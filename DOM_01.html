@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <title>DOM SIMPLE</title>
+</head>
+<script>
+function createPara(){
+    var newParagraph = document.createElement("p");
+    var paragraphContent = document.createTextNode("I'm new!");
+    newParagraph.appendChild(paragraphContent);
+    document.body.appendChild(newParagraph);
+}
+function createListe(){
+
+    var newUL= document.createElement("ul");
+
+    var newLI1= document.createElement("li");
+    var newTXT1 = document.createTextNode("Bonjour");
+
+  var newOL= document.createElement("ol");
+  var newOLLI1= document.createElement("li");
+  var newOLTXT1 = document.createTextNode("Helloo");
+  var newOLLI2= document.createElement("li");
+  var newOLTXT2 = document.createTextNode("Helloo");
+
+    var newLI2= document.createElement("li");
+    var newTXT2 = document.createTextNode("Helloo");
+
+    newLI1.appendChild(newTXT1);
+    newLI2.appendChild(newTXT2);
+    newOLLI1.appendChild(newOLTXT1);
+    newOLLI2.appendChild(newOLTXT2);
+
+    newUL.appendChild(newLI1);
+    newUL.appendChild(newLI2);
+    newUL.appendChild(newOL);
+    newOL.appendChild(newOLLI1);
+    newOL.appendChild(newOLLI2);
+    document.body.appendChild(newUL);
+}
+function supprimerListe(){
+    var child = document.body.lastChild;
+    document.body.removeChild(child);
+}
+var XConsole = null;
+function parcourirRec (noeud){
+    XConsole.value += noeud.nodeName + "\n";
+    var node = noeud.firstChild;
+    while(node!=null){
+        parcourirRec(node);
+        node = node.nextSibling;
+    }
+}
+function parcourir(){
+    XConsole = document.getElementsByName("Console")[0];
+    XConsole.value="";
+    parcourirRec("",document.body);
+}
+</script>
+<body>
+    <h1>DOM DOM DOM</h1>
+    <hr>
+    <p>Exemple de DOM DOM DOM en JavaScript</p>
+    <button onClick="createPara();">Paragraphe</button>
+
+    <button onClick="createListe();">Liste</button>
+    <button onClick="supprimerListe();">Supprimer Liste</button>
+<button onClick="parcourir();">Parcourir</button>
+    <textarea name="XConsole" col="50" row="50">Defaut</textarea>
+</body>
+</html>
